@@ -1,0 +1,256 @@
+@import './index.css';
+
+/* 3D Config page overrides لو الصفحة انعرضت لحالها بدون index.css */
+
+/* ديسكتوب */
+#config{
+  display:grid;
+  grid-template-rows:minmax(260px,1fr) auto;
+  min-height:calc(100vh - 56px);
+  background:var(--panel,#f5f6f7);
+}
+
+#scene{
+  position:relative;
+  min-height:360px;
+  border-bottom:1px solid var(--border,#d5d8de);
+  background:#1b2a3c; /* كحلي غامق لخلفية الـ3D */
+}
+
+.hint{
+  position:absolute;
+  inset:12px auto auto 12px;
+  pointer-events:none;
+  background:var(--glass,rgba(27,42,60,.85));
+  backdrop-filter:blur(4px);
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;
+  font-size:12px;
+  line-height:1.6;
+  max-width:360px;
+}
+.hint b{color:#fff}
+
+.badge{
+  position:absolute;
+  inset:auto 12px 12px auto;
+  background:var(--glass,rgba(27,42,60,.85));
+  color:#fff;
+  border:1px solid rgba(255,255,255,.2);
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+}
+
+/* panel / form */
+.panel{
+  display:grid;
+  gap:14px;
+  padding:16px;
+  background:var(--panel,#f5f6f7);
+  grid-template-columns: repeat(6, minmax(180px, 1fr));
+  align-items:end;
+  border-top:1px solid var(--border,#d5d8de);
+}
+.section{
+  border:1px solid var(--border,#d5d8de);
+  background:var(--card,#ffffff);
+  border-radius:16px;
+  padding:14px;
+  display:grid;
+  gap:12px;
+}
+.section h4{
+  margin:0;
+  font-size:13px;
+  color:var(--muted,#6b6f76);
+  font-weight:600;
+}
+.field{display:grid; gap:6px}
+.label{
+  color:var(--muted,#6b6f76);
+  font-size:12px;
+}
+.units{
+  color:var(--muted,#6b6f76);
+  font-size:12px;
+}
+
+input[type="number"],
+select,
+button{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border,#d5d8de);
+  background:var(--card,#ffffff);
+  color:var(--text,#1a1a1a);
+  outline:none;
+  transition:border-color .2s, box-shadow .2s, background .2s, color .2s;
+  font-size:14px;
+  line-height:1.3;
+}
+input[type="number"]{ text-align:center }
+input[type="number"]:focus,
+select:focus{
+  border-color:var(--accent,#c9a646);
+  box-shadow:0 0 0 3px rgba(201,166,70,.25);
+  background:#fffceb;
+}
+
+.row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.row > *{flex:1}
+
+.actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+}
+button{
+  cursor:pointer;
+  background:var(--card,#ffffff);
+  color:var(--text,#1a1a1a);
+  font-weight:500;
+  border:1px solid var(--border,#d5d8de);
+}
+button.primary{
+  border-color:var(--accent,#c9a646);
+  background:var(--accent,#c9a646);
+  color:#1a1a1a;
+  font-weight:600;
+}
+button.good{
+  border-color:var(--ok,#4a5b38);
+  background:var(--ok,#4a5b38);
+  color:#fff;
+  font-weight:600;
+}
+button:active{ transform:translateY(1px) }
+
+.toggles{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.toggles label{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  user-select:none;
+  font-size:13px;
+  color:var(--muted,#6b6f76);
+}
+
+.kpis{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.kpi{
+  background:var(--chip,#f0f1f3);
+  border:1px solid var(--border,#d5d8de);
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+}
+.kpi b{
+  display:block;
+  font-size:18px;
+  margin-top:4px;
+  color:var(--text,#1a1a1a);
+}
+.error{
+  color:var(--danger,#c6534e);
+  font-size:12px;
+  font-weight:500;
+}
+
+/* breakdown pricing */
+.breakdown{
+  display:grid;
+  gap:8px;
+  font-size:12px;
+  color:var(--muted,#6b6f76);
+}
+.breakdown .line{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.breakdown .line b{
+  color:var(--text,#1a1a1a);
+  font-weight:600;
+}
+.breakdown .sum{
+  border-top:1px dashed var(--border,#d5d8de);
+  padding-top:6px;
+}
+
+/* helper chip */
+.chip{
+  background:var(--chip,#f0f1f3);
+  border:1px solid var(--border,#d5d8de);
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:12px;
+  color:var(--text,#1a1a1a);
+  cursor:pointer;
+}
+
+/* ريسبونسف */
+@media (max-width:1200px){
+  .panel{
+    grid-template-columns:repeat(2, minmax(160px,1fr))
+  }
+}
+@media (max-width:720px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ====== إصلاح الموبايل/تابلت هنا برضو ====== */
+@media (max-width:900px){
+  #config{
+    display:block;
+    min-height:auto;
+    height:auto;
+    background:var(--panel,#f5f6f7);
+  }
+
+  #scene{
+    height:50vh;
+    min-height:260px;
+    border-bottom:1px solid var(--border,#d5d8de);
+    background:#1b2a3c;
+  }
+
+  .panel{
+    border-top:0;
+    padding-top:16px;
+    grid-template-columns:repeat(2, minmax(160px,1fr));
+  }
+}
+
+@media (max-width:600px){
+  .panel{
+    grid-template-columns:1fr;
+  }
+  .panel .section{
+    grid-column:span 1 !important;
+  }
+  .hint{
+    max-width:260px;
+    font-size:11px;
+    line-height:1.4;
+    padding:8px 10px;
+  }
+}

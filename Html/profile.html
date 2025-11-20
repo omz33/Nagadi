@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <div class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" data-go="profile.html"><span class="icon">👤</span><span>Profile Info</span></button>
+        <button class="sidebar-link" data-go="projects.html"><span class="icon">📁</span><span>My Projects</span></button>
+        <button class="sidebar-link" data-go="myRequests.html"><span class="icon">❔</span><span>My Requests</span></button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn"><span class="icon">↩</span><span>Logout</span></button>
+      </nav>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-inner">
+        <section class="profile-info-card">
+          <h2 class="section-title">Profile Info</h2>
+          <form class="profile-form" id="userProfileForm">
+            <div class="two-inline">
+              <div class="field"><label class="label">First Name</label><input id="firstName" required /></div>
+              <div class="field"><label class="label">Last Name</label><input id="lastName" required /></div>
+            </div>
+            <div class="two-inline">
+              <div class="field"><label class="label">Phone</label><input id="phone" inputmode="numeric" /></div>
+              <div class="field"><label class="label">Email</label><input id="email" type="email" required /></div>
+            </div>
+            <div class="field"><label class="label">Location (City)</label><input id="location" /></div>
+            <div class="form-actions"><button class="btn primary" type="submit">Save Changes</button></div>
+          </form>
+        </section>
+
+        <section class="profile-info-card">
+          <h2 class="section-title">Change Password</h2>
+          <form class="profile-form" id="userPwForm">
+            <div class="field password-field"><label class="label">Current Password</label><input id="curPw" type="password" required /><button type="button" class="eye"></button></div>
+            <div class="field password-field"><label class="label">New Password</label><input id="newPw" type="password" required /><button type="button" class="eye"></button></div>
+            <div class="field password-field"><label class="label">Confirm New Password</label><input id="newPw2" type="password" required /><button type="button" class="eye"></button></div>
+            <div class="form-actions"><button class="btn" type="submit">Change Password</button></div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module">
+  import { getUser, isAdmin, updateUserProfile, alertModal, changeUserPasswordWithCurrent } from '../Js/app.js';
+
+  function eyeToggles(root=document){
+    root.querySelectorAll('.password-field .eye').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const input = btn.parentElement.querySelector('input');
+        const show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        btn.classList.toggle('shown', show);
+      });
+    });
+  }
+
+  function guard() {
+    const u = getUser();
+    if (!u) { location.href='./login.html?next=profile.html'; return false; }
+    if (isAdmin(u)) { location.href='./adminProfile.html'; return false; }
+    return true;
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    if (!guard()) return;
+
+    document.querySelectorAll('.sidebar-link[data-go]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ location.href = `./${btn.getAttribute('data-go')}`; });
+    });
+    document.getElementById('sidebarLogoutBtn').addEventListener('click', ()=>{ localStorage.removeItem('tn_user'); location.href='./index.html'; });
+
+    const u = getUser();
+    document.getElementById('firstName').value = u.firstName || '';
+    document.getElementById('lastName').value  = u.lastName || '';
+    document.getElementById('phone').value     = u.phone || '';
+    document.getElementById('email').value     = u.email || '';
+    document.getElementById('location').value  = u.location || '';
+
+    document.getElementById('userProfileForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const res = updateUserProfile({
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        location: document.getElementById('location').value.trim()
+      });
+      if (!res.ok) { await alertModal(res.msg || 'Update failed', 'Error'); return; }
+      await alertModal('Profile updated.', 'Saved');
+    });
+
+    eyeToggles();
+    document.getElementById('userPwForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const res = changeUserPasswordWithCurrent(
+        document.getElementById('curPw').value,
+        document.getElementById('newPw').value,
+        document.getElementById('newPw2').value
+      );
+      if (!res.ok) { await alertModal(res.msg || 'Password change failed', 'Error'); return; }
+      await alertModal('Password changed.', 'Saved');
+      document.getElementById('curPw').value='';
+      document.getElementById('newPw').value='';
+      document.getElementById('newPw2').value='';
+    });
+  });
+</script>
+</body>
+</html>

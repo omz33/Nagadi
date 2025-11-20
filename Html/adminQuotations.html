@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — Quotations</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <div class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-go="adminProfile.html"><span class="icon">🛡</span><span>Admin Profile</span></button>
+        <button class="sidebar-link" data-go="adminUsers.html"><span class="icon">👥</span><span>Users</span></button>
+        <button class="sidebar-link active" data-go="adminQuotations.html"><span class="icon">💬</span><span>Quotations</span></button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn"><span class="icon">↩</span><span>Logout</span></button>
+      </nav>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-inner">
+        <section class="profile-info-card">
+          <h2 class="section-title">Quotations Requests</h2>
+          <div class="project-grid" id="quotesGrid"></div>
+        </section>
+
+        <section class="profile-info-card" id="detailSection" style="display:none">
+          <h2 class="section-title">Request Details</h2>
+          <div id="reqInfo" class="cart-group"></div>
+
+          <div class="section" id="replyFormWrap" style="margin-top:10px; display:none">
+            <h4>Prepare Quotation</h4>
+            <div id="itemsPriceWrap"></div>
+
+            <div class="two-inline" style="margin-top:10px">
+              <div class="field"><label class="label">Delivery Cost</label><input id="rf_delivery" type="number" step="0.01" value="0" /></div>
+              <div class="field"><label class="label">Discount</label><input id="rf_discount" type="number" step="0.01" value="0" /></div>
+            </div>
+            <div class="field"><label class="label">Overall Notes</label><input id="rf_notes" /></div>
+            <div class="field"><label class="label">Offer Valid Until</label><input id="rf_valid" type="date" /></div>
+
+            <div class="form-actions">
+              <button class="btn primary" id="btnSendQuote">Send Quotation</button>
+              <button class="btn" id="btnAskClar">Ask for Clarification</button>
+              <button class="btn good" id="btnApproveFinal" style="display:none">Approve Final (Admin)</button>
+            </div>
+          </div>
+
+          <div class="section" style="margin-top:10px">
+            <h4>Messages</h4>
+            <div id="msgList" class="cart-items"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/adminQuotations.js"></script>
+</body>
+</html>

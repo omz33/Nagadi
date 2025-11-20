@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Projects — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <main class="profile-page">
+    <!-- sidebar -->
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-go="profile.html">
+          <span class="icon">👤</span>
+          <span>Profile Info</span>
+        </button>
+
+        <button class="sidebar-link active" data-go="projects.html">
+          <span class="icon">📁</span>
+          <span>My Projects</span>
+        </button>
+
+        <button class="sidebar-link active" data-go="myRequests.html">
+          <span class="icon">❔</span>
+          <span>My Requests</span>
+        </button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn">
+          <span class="icon">↩</span>
+          <span>Logout</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- content -->
+    <section class="profile-main">
+      <div class="profile-inner">
+
+        <section class="projects-full-wrapper">
+          <h2 class="section-title">My Projects</h2>
+
+          <div id="projectsGridFull" class="project-grid">
+            <!-- يتعبى من JS -->
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/projects.js"></script>
+</body>
+</html>

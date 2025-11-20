@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>T.Nagadi — Products</title>
+  <link rel="stylesheet" href="../Css/Products.css">
+  <link rel="stylesheet" href="../Css/header.css">
+</head>
+<body>
+  <!-- Shared header mounts here -->
+  <div id="site-header"></div>
+
+<main id="home">
+  <div class="catalog-head">
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M21 21l-4.3-4.3M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z"
+              stroke="#6b6f76"
+              stroke-width="2"
+              stroke-linecap="round"/>
+      </svg>
+      <input id="searchInput" placeholder="Search: pipe, elbow, manhole, culvert..." />
+    </div>
+    <div class="pill" data-tag="all">All</div>
+    <div class="pill" data-tag="pipe">Pipe</div>
+    <div class="pill" data-tag="manhole">Manhole</div>
+    <div class="pill" data-tag="culvert">Culvert</div>
+  </div>
+
+  <div class="grid" id="grid">
+    <!-- Straight Pipe -->
+    <div class="card" data-tags="pipe">
+      <div class="art">
+        <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="28" width="100" height="14" rx="7"
+                stroke="#c9a646"
+                stroke-width="2"/>
+          <rect x="12" y="30" width="96" height="10" rx="5"
+                stroke="#c9a646"
+                stroke-opacity=".4"
+                stroke-width="2"
+                fill="none"/>
+        </svg>
+      </div>
+      <h3>Straight Pipe</h3>
+      <p>Concrete / Fiber Glass. Configurable Dia, thickness &amp; length.</p>
+      <div class="tags">
+        <span class="tag">Pipe</span>
+        <span class="tag">3D</span>
+        <span class="tag">Cart</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="./straightPipe.html">Configure</a>
+      </div>
+    </div>
+
+    <!-- Elbow Pipe -->
+    <div class="card" data-tags="pipe">
+      <div class="art">
+        <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 50 A30 30 0 0 1 50 20"
+                stroke="#c9a646"
+                stroke-width="12"
+                fill="none"
+                stroke-linecap="round"/>
+          <path d="M20 50 A30 30 0 0 1 50 20"
+                stroke="#c9a646"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                opacity=".5"/>
+        </svg>
+      </div>
+      <h3>Elbow Pipe</h3>
+      <p>Dia, thickness, CLR &amp; angle. Coatings &amp; mix.</p>
+      <div class="tags">
+        <span class="tag">Pipe</span>
+        <span class="tag">Elbow</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="./ElbowPipe.html">Configure</a>
+      </div>
+    </div>
+
+    <!-- Manhole -->
+    <div class="card" data-tags="manhole">
+      <div class="art">
+        <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="24" rx="34" ry="10"
+                   stroke="#c9a646"
+                   stroke-width="2"/>
+          <rect x="26" y="24" width="68" height="28" rx="10"
+                stroke="#c9a646"
+                stroke-width="2"
+                stroke-opacity=".4"
+                fill="none"/>
+        </svg>
+      </div>
+      <h3>Manhole</h3>
+      <p>ID, wall, height, top slab &amp; opening. Mix/coatings supported.</p>
+      <div class="tags">
+        <span class="tag">Manhole</span>
+        <span class="tag">Cylindrical</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="./Manhole.html">Configure</a>
+      </div>
+    </div>
+
+    <!-- Box Culvert -->
+    <div class="card" data-tags="culvert">
+      <div class="art">
+        <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="16" width="80" height="38" rx="6"
+                stroke="#c9a646"
+                stroke-width="2"/>
+          <rect x="30" y="22" width="60" height="26" rx="2"
+                stroke="#c9a646"
+                stroke-width="2"
+                stroke-opacity=".4"
+                fill="none"/>
+        </svg>
+      </div>
+      <h3>Box Culvert</h3>
+      <p>Opening, thicknesses, slabs, length. Mix &amp; coatings.</p>
+      <div class="tags">
+        <span class="tag">Culvert</span>
+        <span class="tag">Concrete</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="./BoxCulvert.html">Configure</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+  <script type="module" src="../Js/app.js"></script>
+  <script type="module" src="../Js/Products.js"></script>
+  <script type="module" src="../Js/header.js"></script>
+</body>
+</html>

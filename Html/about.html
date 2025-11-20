@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — T. Nagadi</title>
+
+  <!-- Your site styles -->
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+
+<style>
+  :root{
+    /* fallback محلي لو لأي صفحة انعرضت بدون الـ CSS العام */
+    --card:#ffffff;
+    --muted:#6b6f76;
+    --ring:#d5d8de; /* نفس var(--border) */
+    --border:#d5d8de;
+    --text:#1a1a1a;
+    --bg:#f5f6f7;
+  }
+
+  /* Layout */
+  .about-wrap{
+    padding:18px;
+    display:grid;
+    gap:16px;
+    max-width:1200px;
+    margin-inline:auto;
+    background:var(--bg);
+  }
+
+  .card{
+    background:var(--card,#ffffff);
+    border:1px solid var(--border,#d5d8de);
+    border-radius:16px;
+    padding:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.04);
+  }
+
+  .two-imgs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  /* هنا التعديل الكبير:
+     بدل ارتفاع ثابت px (كان يخرّب على الموبايل)،
+     استخدمنا aspect-ratio عشان الصورة تكون قصّة نظيفة وما تتمدد غلط
+  */
+  .two-imgs .photo{
+    width:100%;
+    aspect-ratio:4/3;
+    height:460px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid var(--border,#d5d8de);
+    background:#fff;
+    display:block;
+  }
+
+  /* Typography helpers */
+  .prose p{
+    margin:0 0 10px 0;
+    line-height:1.7;
+    color:var(--text,#1a1a1a);
+    font-size:14px;
+  }
+  .prose h2{
+    margin:0 0 10px 0;
+    color:var(--text,#1a1a1a);
+    font-size:16px;
+    font-weight:600;
+  }
+  .prose b{
+    color:var(--text,#1a1a1a);
+  }
+  .muted{
+    color:var(--muted,#6b6f76);
+  }
+
+  /* Responsive */
+  @media (max-width:900px){
+    .two-imgs{
+      grid-template-columns:1fr;
+    }
+
+    .two-imgs .photo{
+      aspect-ratio:16/9;
+      height:300px;
+      width:300px;
+    }
+
+    .about-wrap{
+      padding:16px 12px;
+    }
+
+    .prose p{
+      font-size:14px;
+      line-height:1.6;
+    }
+  }
+
+  body{
+    margin:0;
+    background:var(--bg,#f5f6f7);
+    color:var(--text,#1a1a1a);
+    font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif;
+  }
+
+  /* Reveal-on-scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.show{
+    opacity:1;
+    transform:translateY(0);
+  }
+</style>
+
+</head>
+<body>
+  <!-- الـ header المشترك -->
+  <div id="site-header"></div>
+
+  <main class="about-wrap">
+
+    <!-- TOP: two images side by side -->
+    <section class="two-imgs reveal">
+      <img src="../assets/T.-Nagadi-Family-No-Logo--scaled.jpg"
+           alt="Company facility image 1"
+           loading="lazy"
+           class="photo" />
+      <img src="../assets/image.png"
+           alt="Company facility image 2"
+           loading="lazy"
+           class="photo" />
+    </section>
+
+    <!-- COMPANY TEXT -->
+    <section class="card prose reveal">
+      <h2>T. Nagadi Group of Factories</h2>
+      <p><b>Presided by Shaikh Tarik Mohamed Nagadi</b>, the Group is expanding its activities by
+        increasing production capacity with modern machinery to meet the growing demand for
+        quality concrete products across the Kingdom of Saudi Arabia and the GCC.</p>
+
+      <p>The latest major expansion is underway at the <b>Al-Kharj T. Nagadi Industrial Complex</b> in
+        Al-Rifaya Industrial Area, spanning <b>160,000&nbsp;m²</b>. The complex is designed not only for concrete
+        products, but also houses <b>HDPE</b> and <b>Textile</b> factories—supporting <b>Saudi Vision 2030</b> through
+        the localization of manufacturing. In addition, a factory has been established in the
+        <b>Tabuk</b> region to serve local demand and support contractors with more economical delivery.</p>
+
+      <p>Our expansion roadmap aligns with the Kingdom’s economic development plans and
+        Vision 2030. Over the past years we have consistently delivered quality products,
+        earning approvals from numerous government organizations for project supply.</p>
+
+      <p>We operate modern production units across more than <b>500,000&nbsp;m²</b>:
+        a <b>160,000&nbsp;m² Al-Kharj</b> complex (to which the former <b>40,000&nbsp;m² Riyadh</b> plant is being relocated),
+        a <b>200,000&nbsp;m² Yanbu</b> plant, and a <b>45,000&nbsp;m² Tabuk</b> plant.</p>
+
+      <p>Our facilities produce <b>Lined &amp; Non-Lined Reinforced Concrete Pipes</b> (for micro-tunneling and
+        open trench), <b>Box Culverts</b> of multiple sizes, a full range of <b>Sewer &amp; Storm Manholes</b>,
+        <b>Telecommunication &amp; Electrical Manholes &amp; Handholes</b>, and other custom precast elements.
+        A key product line is the <b>Concrete Fence Wall</b>. All products comply with <b>Saudi and
+        international standards</b>.</p>
+
+      <p>Our strategic locations enable economical coverage across the Kingdom:
+        <b>Riyadh / Al-Kharj</b> serves the Central &amp; Eastern regions, <b>Yanbu</b> serves the Western region,
+        and <b>Tabuk</b> supports the Northern region.</p>
+
+      <p>We are prepared to expand further in line with industry demand, adding more
+        machinery as required.</p>
+
+      <p>Certified to <b>ISO</b> since <b>2002</b>, we maintain rigorous quality systems with regular renewals and
+        upgrades. We are also a member of the <b>Pipe Jacking Association, London (UK)</b>.</p>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="card reveal">
+      <h3 style="margin:0 0 8px 0">Why Choose Us</h3>
+      <p class="muted" style="margin:0 0 8px 0">
+        Our reputation for exceeding the highest quality standards is why customers choose us—
+        and stay with us. Our first customer is still with us after decades because the quality is
+        consistent, batch after batch, year after year.
+      </p>
+      <ul style="margin:0; padding-left:18px">
+        <li>Manufacturing since 1977 with the highest expertise in the market</li>
+        <li>Superior quality and craftsmanship</li>
+        <li>We deliver on time</li>
+        <li>Highest standards from international certifiers</li>
+        <li>On time &amp; on budget</li>
+        <li>Real focus on customer satisfaction</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- سكربتات الموقع -->
+  <script type="module" src="../Js/app.js"></script>
+  <script type="module" src="../Js/header.js"></script>
+
+  <!-- reveal-on-scroll logic -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting){
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target); // يشتغل مرة وحدة
+        }
+      });
+    }, {
+      threshold: 0.15 // يبدأ الأنيميشن لما نشوف تقريباً 15% من السكشن
+    });
+
+    reveals.forEach(el=>observer.observe(el));
+  </script>
+
+  <noscript>JavaScript is required for the header to load.</noscript>
+</body>
+</html>

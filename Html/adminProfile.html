@@ -1,0 +1,111 @@
+<!-- adminProfile.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Profile — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <div class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" data-go="adminProfile.html">
+          <span class="icon">🛡</span>
+          <span>Admin Profile</span>
+        </button>
+
+        <button class="sidebar-link" id="usersMenuBtn">
+          <span class="icon">👥</span>
+          <span>Users</span>
+        </button>
+
+        <button class="sidebar-link" id="quotesMenuBtn">
+          <span class="icon">💬</span>
+          <span>Quotations</span>
+        </button>
+
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn">
+          <span class="icon">↩</span>
+          <span>Logout</span>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-inner">
+        <section class="profile-info-card">
+          <h2 class="section-title">Admin Profile</h2>
+          <form class="profile-form" id="adminProfileForm">
+            <div class="two-inline">
+              <div class="field">
+                <label class="label">First Name</label>
+                <input id="firstName" type="text" required />
+              </div>
+              <div class="field">
+                <label class="label">Last Name</label>
+                <input id="lastName" type="text" required />
+              </div>
+            </div>
+
+            <div class="two-inline">
+              <div class="field">
+                <label class="label">Phone Number</label>
+                <input id="phone" type="text" inputmode="numeric" />
+              </div>
+              <div class="field">
+                <label class="label">Email</label>
+                <input id="email" type="email" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Location (City)</label>
+              <!-- changed to SELECT -->
+              <select id="location"></select>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn primary" type="submit">Save Changes</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="profile-info-card">
+          <h2 class="section-title">Change Password</h2>
+          <form class="profile-form" id="adminPwForm">
+            <div class="field password-field">
+              <label class="label">Current Password</label>
+              <input id="curPw" type="password" required />
+              <button type="button" class="eye" title="Show/Hide"></button>
+            </div>
+            <div class="field password-field">
+              <label class="label">New Password</label>
+              <input id="newPw" type="password" required />
+              <button type="button" class="eye" title="Show/Hide"></button>
+            </div>
+            <div class="field password-field">
+              <label class="label">Confirm New Password</label>
+              <input id="newPw2" type="password" required />
+              <button type="button" class="eye" title="Show/Hide"></button>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit">Change Password</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/adminProfile.js"></script>
+</body>
+</html>

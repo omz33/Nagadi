@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — Users</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <div class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-go="adminProfile.html">
+          <span class="icon">🛡</span>
+          <span>Admin Profile</span>
+        </button>
+        <button class="sidebar-link active" data-go="adminUsers.html">
+          <span class="icon">👥</span>
+          <span>Users</span>
+        </button>
+        <button class="sidebar-link" data-go="adminQuotations.html">
+          <span class="icon">💬</span>
+          <span>Quotations</span>
+        </button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn">
+          <span class="icon">↩</span>
+          <span>Logout</span>
+        </button>
+      </nav>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-inner">
+        <section class="profile-info-card" id="addUserSection" style="display:none">
+          <h2 class="section-title">Add New User (will be Admin)</h2>
+          <form class="profile-form" id="addUserForm">
+            <div class="two-inline">
+              <div class="field"><label class="label">First Name</label><input id="au_firstName" required /></div>
+              <div class="field"><label class="label">Last Name</label><input id="au_lastName" required /></div>
+            </div>
+            <div class="two-inline">
+              <div class="field"><label class="label">Email</label><input id="au_email" type="email" required /></div>
+              <div class="field"><label class="label">Password</label><input id="au_password" type="password" required /></div>
+            </div>
+            <div class="two-inline">
+              <div class="field"><label class="label">User ID</label><input id="au_idNumber" required /></div>
+              <div class="field"><label class="label">Phone Number</label><input id="au_phone" inputmode="numeric" /></div>
+            </div>
+            <div class="field">
+              <label class="label">Location (Saudi cities)</label>
+              <select id="au_location" required></select>
+            </div>
+
+            <div class="section" style="margin-top:10px">
+              <h4>Permissions</h4>
+              <label><input type="checkbox" id="p_manageUsers" /> Can manage users</label>
+              <label><input type="checkbox" id="p_viewReply" /> Can view & reply to quotation requests</label>
+              <label><input type="checkbox" id="p_approve" /> Can approve final quotation</label>
+              <label><input type="checkbox" id="p_addAdmins" /> Can add admins</label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn primary" type="submit">Create User</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="profile-info-card" id="listUsersSection" style="display:none">
+          <h2 class="section-title">Current Users</h2>
+          <div id="usersGrid" class="project-grid"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/adminUsers.js"></script>
+</body>
+</html>

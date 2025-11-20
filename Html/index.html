@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home — T.Nagadi</title>
+
+  <!-- ستايل المشروع العام -->
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+
+<style>
+  /* ===========================
+     Layout الأساسي للصفحة
+  ============================ */
+  .home-wrap{
+    display:block;
+    padding:0; /* ما بدنا padding حوالين الفيديو */
+    background:var(--bg);
+  }
+
+  /* ====== سيكشن الفيديو (الهيرو) ====== */
+  .hero-video{
+    position:relative;
+    height:100vh;         /* ياخذ كل الشاشة */
+    min-height:480px;     /* عشان الموبايل الصغير */
+    width:100%;
+    background:#1b2a3c;  /* كحلي غامق صناعي بدل الأزرق النيون */
+    border-radius:0;
+    border:0;
+    overflow:hidden;
+  }
+
+  /* الفيديو نفسه (بدل iframe) */
+  .hero-video iframe,
+  .hero-video video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    background:#000;
+    object-fit:cover; /* يعبّي المساحة بالكامل */
+  }
+
+  /* تظليل من تحت الهيرو */
+  .hero-video::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:120px;
+    background:linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,.6) 60%,
+      rgba(0,0,0,1) 100%
+    );
+    pointer-events:none;
+  }
+
+  /* Scroll hint */
+  .scroll-hint{
+    position:absolute;
+    left:50%;
+    bottom:24px;
+    transform:translateX(-50%);
+    color:#fff;
+    font-size:12px;
+    font-weight:500;
+    text-align:center;
+    opacity:.8;
+    user-select:none;
+    pointer-events:none;
+    font-family:system-ui, sans-serif;
+    line-height:1.4;
+  }
+  .scroll-hint .arrow{
+    font-size:16px;
+    display:block;
+    animation:bounce 1.5s infinite;
+  }
+  @keyframes bounce{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(4px); }
+  }
+
+  /* ====== باقي الكونتنت تحت الفيديو ====== */
+  .content-area{
+    max-width:1200px;
+    margin-inline:auto;
+    padding:32px 18px 64px;
+    display:grid;
+    gap:100px; /* المسافة الكبيرة بين الأكورديون والشريط */
+    background:var(--bg,#f5f6f7);
+  }
+
+  /* ===========================
+     Accordion (Why / Vision / Mission)
+  ============================ */
+  .accordion{
+    display:grid;
+    gap:20px; /* مسافة بين كل بلوك أكورديون */
+  }
+  .acc-item{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .acc-btn{
+    width:100%;
+    text-align:left;
+    padding:12px 14px;
+    background:var(--card);
+    border:0;
+    border-bottom:1px solid var(--border);
+    color:var(--text);
+    cursor:pointer;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:12px; /* مسافة أكبر بين الـ ➕ والنص */
+    font-size:15px;
+    line-height:1.4;
+  }
+  .acc-btn .icon{
+    font-size:16px;
+    line-height:1;
+    width:16px;
+    flex-shrink:0;
+    text-align:center;
+    color:var(--accent);
+  }
+  .acc-content{
+    padding:12px 14px;
+    display:none;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+    background:var(--card);
+  }
+  .acc-item.open .acc-content{
+    display:block;
+  }
+
+  /* ===========================
+     شريط الصور المتحرك (infinite strip)
+  ============================ */
+  .scroll-strip{
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--card);
+    overflow:hidden;
+    padding:10px;
+  }
+  .track{
+    display:flex;
+    gap:10px;
+    width:max-content;
+    will-change: transform;
+    animation: scroll 30s linear infinite;
+  }
+  .scroll-strip:hover .track{
+    animation-play-state: paused;
+  }
+  .tile{
+    flex:0 0 auto;
+    width:calc((100% - 30px)/4);
+    max-width:320px;
+    aspect-ratio:16 / 9;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--card);
+  }
+  .tile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  @keyframes scroll{
+    from{ transform: translateX(0); }
+    to  { transform: translateX(-50%); }
+  }
+
+  @media (max-width:900px){
+    .tile{
+      width:calc((100% - 20px)/3);
+    }
+  }
+  @media (max-width:640px){
+    .tile{
+      width:calc((100% - 10px)/2);
+    }
+  }
+
+  /* ظهور سلس عند السكрол */
+  .reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.show{
+    opacity:1;
+    transform:translateY(0);
+  }
+</style>
+
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <main class="home-wrap">
+
+    <!-- ===============================
+         HERO VIDEO (محلي بدل يوتيوب)
+         =============================== -->
+    <section class="hero-video" aria-label="Intro video">
+      <video
+        src="../assets/T.NAGADI.m4v"
+        autoplay
+        muted
+        playsinline
+        loop
+        preload="auto">
+      </video>
+
+      <div class="scroll-hint">
+        <span>Scroll down</span>
+        <span class="arrow">⬇</span>
+      </div>
+    </section>
+
+    <!-- ===============================
+         باقي الكونتنت تحت الهيرو
+         =============================== -->
+    <section class="content-area">
+
+      <section class="accordion reveal" aria-label="Company info">
+
+        <div class="acc-item" id="acc-why">
+          <button class="acc-btn" type="button">
+            <span class="icon">➕</span>
+            <span>Why T. Nagadi</span>
+          </button>
+          <div class="acc-content">
+            “We T. NAGADI Group of Factories” is a leading supplier of both precast concrete and fiberglass plastic
+            products founded in 1977. and since then has evolved as the leading provider in Kingdom of Saudi Arabia
+            with an extended supply over GCC. We are very successful in providing quality products achieving satisfaction
+            of our valued customers. We gain recognition from many government organizations and approval for supplying
+            concrete products for their projects.
+          </div>
+        </div>
+
+        <!-- Our Vision -->
+        <div class="acc-item" id="acc-vision">
+          <button class="acc-btn" type="button">
+            <span class="icon">➕</span>
+            <span>Our Vision</span>
+          </button>
+          <div class="acc-content">
+            Contribute to civilization through the development of superior, inventive methodology and highest quality
+            products and deliver the best in the industry, apply the latest technology, get the customer satisfaction,
+            meet best service in design, manufacturing &amp; quality.
+          </div>
+        </div>
+
+        <!-- Our Mission -->
+        <div class="acc-item" id="acc-mission">
+          <button class="acc-btn" type="button">
+            <span class="icon">➕</span>
+            <span>Our Mission</span>
+          </button>
+          <div class="acc-content">
+            <ul style="margin:0; padding-left:18px">
+              <li>Provide the best quality GRP pipes and fittings by ensuring accuracy and perfection in each stage of the operations which leads to customer satisfaction</li>
+              <li>We are pride in our flexibility to produce special and custom pipe products to meet any requirement of current market.</li>
+              <li>Our multi-level inspection ensures the strictest quality assurance in all aspects of production process.</li>
+              <li>Our dedicated and well-trained crew are very keen to continually improve the factory and the staff productivity.</li>
+              <li>Overlook in community advancement and environmental health and safety.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="scroll-strip reveal" aria-label="Gallery strip">
+        <div class="track">
+          <figure class="tile"><img src="../assets/1.jpg"  alt="photo 1"></figure>
+          <figure class="tile"><img src="../assets/2.jpg"  alt="photo 2"></figure>
+          <figure class="tile"><img src="../assets/3.jpg"  alt="photo 3"></figure>
+          <figure class="tile"><img src="../assets/4.jpg"  alt="photo 4"></figure>
+          <figure class="tile"><img src="../assets/5.jpg"  alt="photo 5"></figure>
+          <figure class="tile"><img src="../assets/6.jpg"  alt="photo 6"></figure>
+          <figure class="tile"><img src="../assets/7.jpg"  alt="photo 7"></figure>
+          <figure class="tile"><img src="../assets/8.jpg"  alt="photo 8"></figure>
+          <figure class="tile"><img src="../assets/9.jpg"  alt="photo 9"></figure>
+          <figure class="tile"><img src="../assets/1.jpg"  alt="photo 10"></figure>
+
+          <figure class="tile"><img src="../assets/1.jpg"  alt="photo 1 duplicate"></figure>
+          <figure class="tile"><img src="../assets/2.jpg"  alt="photo 2 duplicate"></figure>
+          <figure class="tile"><img src="../assets/3.jpg"  alt="photo 3 duplicate"></figure>
+          <figure class="tile"><img src="../assets/4.jpg"  alt="photo 4 duplicate"></figure>
+          <figure class="tile"><img src="../assets/5.jpg"  alt="photo 5 duplicate"></figure>
+          <figure class="tile"><img src="../assets/6.jpg"  alt="photo 6 duplicate"></figure>
+          <figure class="tile"><img src="../assets/7.jpg"  alt="photo 7 duplicate"></figure>
+          <figure class="tile"><img src="../assets/8.jpg"  alt="photo 8 duplicate"></figure>
+          <figure class="tile"><img src="../assets/9.jpg"  alt="photo 9 duplicate"></figure>
+          <figure class="tile"><img src="../assets/1.jpg"  alt="photo 10 duplicate"></figure>
+        </div>
+      </section>
+
+    </section><!-- /content-area -->
+  </main>
+
+  <script type="module" src="../Js/app.js"></script>
+  <script type="module" src="../Js/header.js"></script>
+  <script type="module">
+
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.acc-btn');
+      if (!btn) return;
+
+      const item = btn.closest('.acc-item');
+      const iconEl = btn.querySelector('.icon');
+
+      const isOpen = item.classList.toggle('open');
+      if (iconEl){
+        iconEl.textContent = isOpen ? '➖' : '➕';
+      }
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting){
+          entry.target.classList.add('show');
+          // يشتغل مره وحده
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15 
+    });
+
+    reveals.forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+<style>
+  :root{
+    --card:#ffffff;
+    --muted:#6b6f76;
+    --border:#d5d8de;
+    --bg:#f5f6f7;
+    --text:#1a1a1a;
+  }
+
+  .gallery{
+    padding:18px;
+    background:var(--bg,#f5f6f7);
+    color:var(--text,#1a1a1a);
+    font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif;
+  }
+
+  .masonry{
+    column-count: 4;
+    column-gap: 10px;
+  }
+
+  .tile{
+    break-inside: avoid;
+    margin-bottom:10px;
+    background:var(--card,#ffffff);
+    border:1px solid var(--border,#d5d8de);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.04);
+
+    /* حالة البداية: مخفية بالكامل */
+    opacity:0;
+    transform:translateY(16px);
+    visibility:hidden;
+    transition:
+      opacity .6s ease,
+      transform .6s ease;
+    /* يستخدمها السكربت لكل دفعة */
+    transition-delay: var(--d, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .tile.show{
+    opacity:1;
+    transform:translateY(0);
+    visibility:visible;
+  }
+
+  .tile img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  .cap{
+    padding:8px 10px;
+    color:var(--muted,#6b6f76);
+    font-size:12px;
+  }
+
+  .tile .crop{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+  }
+
+  @media (max-width:1200px){ .masonry{column-count:3} }
+  @media (max-width:820px) { .masonry{column-count:2} }
+  @media (max-width:560px) { .masonry{column-count:1} }
+</style>
+
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="gallery">
+    <div class="masonry">
+      <!-- === REPLACE src values with your actual files === -->
+      <figure class="tile"><img src="../assets/1.jpg"  alt="img1.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/2.jpg"  alt="img2.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/3.jpg"  alt="img3.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/4.jpg"  alt="img4.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/5.jpg"  alt="img5.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/6.jpg"  alt="img6.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/7.jpg"  alt="img7.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/8.jpg"  alt="img8.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/9.jpg"  alt="img9.png — replace me"  loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/1.jpg" alt="img10.png — replace me" loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/2.jpg" alt="img11.png — replace me" loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/3.jpg" alt="img12.png — replace me" loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/4.jpg" alt="img13.png — replace me" loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/5.jpg" alt="img14.png — replace me" loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <figure class="tile"><img src="../assets/6.jpg" alt="img15.png — replace me" loading="lazy"><figcaption class="cap">Caption</figcaption></figure>
+      <!-- add more figures if you want -->
+    </div>
+  </main>
+
+  <script type="module" src="../Js/app.js"></script>
+  <script type="module" src="../Js/header.js"></script>
+  <script>
+    // ترتيب DOM ثابت
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+
+    // Observer: ما نفتح أي margin، ونطلب 20% من التايل داخل الفيو عشان ما تظهر بدري
+    const io = new IntersectionObserver((entries) => {
+      // ناخذ العناصر اللي دخلت الفيو الآن
+      const batch = entries
+        .filter(e => e.isIntersecting && !e.target.dataset.shown)
+        // نضمن الظهور حسب ترتيبهم في DOM (يساوي الترتيب البصري تقريبًا مع الميسونري)
+        .sort((a, b) => tiles.indexOf(a.target) - tiles.indexOf(b.target));
+
+      // نعمل stagger داخل الدفعة الحالية فقط
+      batch.forEach((e, i) => {
+        const el = e.target;
+        el.dataset.shown = '1';
+        // نضبط تأخير للعنصر داخل الدفعة (مثلاً كل عنصر +40ms)
+        el.style.setProperty('--d', `${i * 40}ms`);
+        // نضيف show بعد التأخير: الترانزيشن يشتغل من CSS
+        setTimeout(() => {
+          el.classList.add('show');
+          io.unobserve(el); // ما يحتاج نراقبه بعد الآن
+        }, i * 80);
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2
+    });
+
+    // ابدأ المراقبة (بدون ما نضيف show لأي عنصر)
+    tiles.forEach(t => io.observe(t));
+  </script>
+</body>
+</html>

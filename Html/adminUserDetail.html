@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Detail — Admin</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <div class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-go="adminProfile.html"><span class="icon">🛡</span><span>Admin Profile</span></button>
+        <button class="sidebar-link active" data-go="adminUsers.html"><span class="icon">👥</span><span>Users</span></button>
+        <button class="sidebar-link" data-go="adminQuotations.html"><span class="icon">💬</span><span>Quotations</span></button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn"><span class="icon">↩</span><span>Logout</span></button>
+      </nav>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-inner">
+        <section class="profile-info-card">
+          <h2 class="section-title">User Details</h2>
+          <form class="profile-form" id="userDetailForm">
+            <div class="two-inline">
+              <div class="field"><label class="label">First Name</label><input id="ud_firstName" required /></div>
+              <div class="field"><label class="label">Last Name</label><input id="ud_lastName" required /></div>
+            </div>
+            <div class="two-inline">
+              <div class="field"><label class="label">Email</label><input id="ud_email" type="email" required /></div>
+              <div class="field"><label class="label">Phone</label><input id="ud_phone" inputmode="numeric" /></div>
+            </div>
+            <div class="two-inline">
+              <div class="field"><label class="label">User ID</label><input id="ud_idNumber" /></div>
+              <div class="field"><label class="label">Location</label><input id="ud_location" /></div>
+            </div>
+
+            <div class="section" style="margin-top:10px">
+              <h4>Permissions (Admins only)</h4>
+              <div id="permsNote" class="muted small"></div>
+              <label><input type="checkbox" id="ud_manageUsers" /> Can manage users</label>
+              <label><input type="checkbox" id="ud_viewReply" /> Can view & reply to quotation requests</label>
+              <label><input type="checkbox" id="ud_approve" /> Can approve final quotation</label>
+              <label><input type="checkbox" id="ud_addAdmins" /> Can add admins</label>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn primary" type="submit">Save Changes</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/adminUserDetail.js"></script>
+</body>
+</html>

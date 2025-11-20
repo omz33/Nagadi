@@ -1,0 +1,86 @@
+<!-- projectDetail.html -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Details — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <main class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-go="profile.html"><span class="icon">👤</span><span>Profile Info</span></button>
+        <button class="sidebar-link active" data-go="projects.html"><span class="icon">📁</span><span>My Projects</span></button>
+        <button class="sidebar-link active" data-go="myRequests.html"><span class="icon">❔</span><span>My Requests</span></button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn"><span class="icon">↩</span><span>Logout</span></button>
+      </nav>
+    </aside>
+
+    <section class="profile-main">
+      <div class="profile-inner">
+
+        <section class="edit-project-card">
+          <h2 class="section-title">Project Details</h2>
+
+          <form id="editProjectForm" class="profile-form" autocomplete="off">
+            <div class="field">
+              <div class="label">Project picture</div>
+              <input type="file" id="projectImage" accept="image/*" />
+              <div class="img-preview" id="imgPreview"></div>
+            </div>
+
+            <div class="two-inline">
+              <div class="field">
+                <div class="label">Company name</div>
+                <input type="text" id="projectCompany" disabled />
+              </div>
+              <div class="field">
+                <div class="label">Project name</div>
+                <input type="text" id="projectName" required />
+              </div>
+            </div>
+
+            <div class="two-inline">
+              <div class="field">
+                <div class="label">Project date</div>
+                <input type="date" id="projectDate" />
+              </div>
+              <div class="field">
+                <div class="label">Project city</div>
+                <!-- cities injected by JS -->
+                <select id="projectLocation"></select>
+              </div>
+            </div>
+
+            <div id="projErr" class="error" style="display:none"></div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary">Save Changes</button>
+              <button type="button" class="btn" id="backToProjects">Back</button>
+              <button type="button" class="btn" id="deleteProjectBtn" style="background:#b00020;color:#fff;">Delete Project</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="project-cart-card">
+          <h2 class="section-title">Products in cart</h2>
+          <div id="projCartEmpty" class="small muted" style="display:none">No products in cart for this project.</div>
+          <div id="projCartItems" class="cart-items"></div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/projectDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Requests — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <div class="profile-page">
+    <aside class="profile-sidebar">
+      <nav class="sidebar-nav">
+        <button class="sidebar-link" data-go="profile.html"><span class="icon">👤</span><span>Profile Info</span></button>
+        <button class="sidebar-link" data-go="projects.html"><span class="icon">📁</span><span>My Projects</span></button>
+        <button class="sidebar-link active" data-go="myRequests.html"><span class="icon">❔</span><span>My Requests</span></button>
+        <button class="sidebar-link logout-link" id="sidebarLogoutBtn"><span class="icon">↩</span><span>Logout</span></button>
+      </nav>
+    </aside>
+
+    <main class="profile-main">
+      <div class="profile-inner">
+        <section class="profile-info-card">
+          <h2 class="section-title">My Requests</h2>
+          <div class="project-grid" id="reqsGrid"></div>
+        </section>
+
+        <section class="profile-info-card" id="detailSection" style="display:none">
+          <h2 class="section-title">Quotation</h2>
+          <div id="clientView"></div>
+          <div class="form-actions" style="margin-top:10px">
+            <button class="btn good" id="btnClientApprove">Approve this Quotation</button>
+            <button class="btn" id="btnClientRev">Request Revision</button>
+          </div>
+
+          <div class="section" style="margin-top:10px">
+            <h4>Messages</h4>
+            <div id="msgList" class="cart-items"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/header.js"></script>
+<script type="module" src="../Js/myRequests.js"></script>
+</body>
+</html>

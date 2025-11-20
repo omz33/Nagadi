@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <main id="auth" class="auth-wrap">
+    <form id="signupForm" class="form-card" autocomplete="off">
+      <h2>Create your account</h2>
+
+      <!-- first / last -->
+      <div class="two">
+        <div class="field">
+          <div class="label">First name</div>
+          <input type="text" id="firstName" required />
+        </div>
+        <div class="field">
+          <div class="label">Last name</div>
+          <input type="text" id="lastName" required />
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="field">
+        <div class="label">Email</div>
+        <input type="email" id="email" required placeholder="you@example.com" />
+      </div>
+
+      <!-- ID number -->
+      <div class="field">
+        <div class="label">ID Number</div>
+        <input type="text" id="idNumber" required />
+      </div>
+
+      <!-- phone -->
+      <div class="field">
+        <div class="label">Phone number</div>
+        <input type="tel" id="phone" required />
+      </div>
+
+      <!-- NEW: company info row -->
+      <div class="two">
+        <div class="field">
+          <div class="label">Company name</div>
+          <input type="text" id="companyName" required placeholder="ex: Al Noor Contracting Co." />
+        </div>
+
+        <div class="field">
+          <div class="label">Company type</div>
+          <select id="companyType" required>
+            <option value="">Select…</option>
+            <option value="contractor">Contractor</option>
+            <option value="consultant">Consultant / Designer</option>
+            <option value="developer">Developer / Owner</option>
+            <option value="government">Government / Municipality</option>
+            <option value="epc">EPC / Industrial</option>
+            <option value="distributor">Supplier / Distributor</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- passwords -->
+      <div class="two">
+        <div class="field password-field">
+          <div class="label">Password</div>
+          <input
+            type="password"
+            id="password"
+            required
+            minlength="6"
+            placeholder="At least 6 characters" />
+          <button type="button" class="eye" aria-label="Show password"></button>
+        </div>
+
+        <div class="field password-field">
+          <div class="label">Re-enter password</div>
+          <input
+            type="password"
+            id="password2"
+            required
+            minlength="6"
+            placeholder="Re-enter password" />
+          <button type="button" class="eye" aria-label="Show password"></button>
+        </div>
+      </div>
+
+      <div id="err" class="error" style="display:none"></div>
+
+      <button type="submit" class="btn primary" style="width:100%">Sign up</button>
+
+      <div class="muted small" style="margin-top:10px">
+        Already have an account?
+        <a class="linklike" href="./login.html">Log in</a>
+      </div>
+    </form>
+  </main>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/auth.js"></script>
+<script type="module" src="../Js/header.js"></script>
+</body>
+</html>

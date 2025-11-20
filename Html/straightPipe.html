@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Straight Pipe — Factory 3D Configurator</title>
+  <link rel="stylesheet" href="../Css/straightPipe.css">
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+<div id="site-header"></div>
+
+  <main id="config">
+    <div id="scene">
+      <div class="hint">
+        <b>Orbit:</b> left mouse to rotate · right/Shift to pan · wheel to zoom.<br/>
+        <b>Tip:</b> Screenshot PNG for drawings.
+      </div>
+      <div class="badge" id="badgeMat">—</div>
+    </div>
+
+    <form id="panel" class="panel" onsubmit="return false;" autocomplete="off">
+      <!-- Basics -->
+      <div class="section" style="grid-column:span 2">
+        <h4>Basics</h4>
+        <div class="row">
+          <div class="field">
+            <div class="label">Units</div>
+            <select id="units">
+              <option value="mm" selected>Millimeter (mm)</option>
+              <option value="in">Inch (in)</option>
+            </select>
+          </div>
+          <div class="field">
+            <div class="label">Material</div>
+            <select id="material">
+              <option value="concrete" data-density="2400" selected>Concrete</option>
+              <option value="frp" data-density="1850">Fiber Glass (FRP)</option>
+            </select>
+          </div>
+          <div class="field">
+            <div class="label">Quantity</div>
+            <input type="number" id="qty" value="1" min="1" step="1"/>
+            <div class="units">pcs</div>
+          </div>
+        </div>
+        <div id="msg" class="error" style="display:none"></div>
+      </div>
+
+      <!-- Straight controls -->
+      <div class="section" style="grid-column:span 2">
+        <h4>Geometry — Straight Pipe</h4>
+        <div class="row">
+          <div class="field"><div class="label">Diameter (Dia)</div><input type="number" id="sp-od" value="100" min="4" step="0.5"><div class="units" id="sp-od-u">mm</div></div>
+          <div class="field"><div class="label">Wall thickness (t)</div><input type="number" id="sp-t" value="5" min="0" step="0.1"><div class="units" id="sp-t-u">mm</div></div>
+          <div class="field"><div class="label">Length (L)</div><input type="number" id="sp-l" value="1000" min="10" step="10"><div class="units" id="sp-l-u">mm</div></div>
+        </div>
+        <div class="row" style="gap:6px">
+          <button type="button" class="chip" data-l="500">0.5 m</button>
+          <button type="button" class="chip" data-l="1000">1.0 m</button>
+          <button type="button" class="chip" data-l="2000">2.0 m</button>
+        </div>
+      </div>
+
+      <!-- Commercial options -->
+      <div class="section" style="grid-column:span 2">
+        <h4>Commercial Options</h4>
+        <div class="row">
+          <div class="field">
+            <div class="label">Mix design (MPa)</div>
+            <select id="mix">
+              <option value="M20" data-factor="1.00">M20 (20 MPa)</option>
+              <option value="M30" data-factor="1.08" selected>M30 (30 MPa)</option>
+              <option value="M40" data-factor="1.15">M40 (40 MPa)</option>
+              <option value="M50" data-factor="1.25">M50 (50 MPa)</option>
+            </select>
+          </div>
+          <div class="field">
+            <div class="label">SteelR (type)</div>
+            <select id="steelr">
+              <option value="none" data-kgm3="0">None</option>
+              <option value="mesh_light" data-kgm3="20">Mesh — Light</option>
+              <option value="mesh_std" data-kgm3="40" selected>Mesh — Standard</option>
+              <option value="cage_std" data-kgm3="80">Cage — Standard</option>
+              <option value="cage_heavy" data-kgm3="120">Cage — Heavy</option>
+            </select>
+          </div>
+          <div class="field">
+            <div class="label">Inner lining</div>
+            <select id="inner">
+              <option value="none" data-rate="0">None</option>
+              <option value="epoxy_300" data-rate="8">Epoxy 300µm</option>
+              <option value="polyurea_1" data-rate="18">Polyurea 1 mm</option>
+            </select>
+          </div>
+          <div class="field">
+            <div class="label">Outer coat</div>
+            <select id="outer">
+              <option value="none" data-rate="0">None</option>
+              <option value="acrylic" data-rate="4" selected>Acrylic</option>
+              <option value="pu" data-rate="10">Polyurethane</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Derived & KPIs -->
+      <div class="section" style="grid-column:span 2">
+        <h4>Derived values</h4>
+        <div class="kpis" id="kpi-wrap"></div>
+      </div>
+
+      <!-- Actions & View -->
+      <div class="section" style="grid-column:span 2">
+        <h4>View & Actions</h4>
+        <div class="actions">
+          <button type="button" id="reset" class="primary" title="Re-center">Re-center</button>
+          <button type="button" id="shot" class="good" title="Save PNG screenshot">Screenshot</button>
+          <button type="button" id="addToCart" class="btn primary" title="Add to your cart">Add to Cart</button>
+          <div class="toggles" style="margin-inline-start:auto">
+            <label><input type="checkbox" id="showGrid" checked/> Grid</label>
+            <label><input type="checkbox" id="showAxes" checked/> Axes</label>
+            <label><input type="checkbox" id="wireframe"/> Wireframe</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/straightPipe.js"></script>
+<script type="module" src="../Js/header.js"></script>
+</body>
+</html>

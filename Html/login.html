@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <main id="auth" class="auth-wrap">
+    <form id="loginForm" class="form-card" autocomplete="off">
+      <h2>Welcome back</h2>
+      <div class="field">
+        <div class="label">Email</div>
+        <input type="email" id="email" required placeholder="you@example.com" />
+      </div>
+      <div class="field password-field">
+        <div class="label">Password</div>
+        <input type="password" id="password" required minlength="6" placeholder="••••••••" />
+        <button type="button" class="eye" aria-label="Show password"></button>
+      </div>
+
+      <div id="err" class="error" style="display:none"></div>
+
+      <button type="submit" class="btn primary" style="width:100%">Log in</button>
+
+      <div class="muted small" style="margin-top:10px">
+        Don’t have an account?
+        <a class="linklike" href="./signup.html">Sign up</a>
+      </div>
+    </form>
+  </main>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/auth.js"></script>
+<script type="module" src="../Js/header.js"></script>
+</body>
+</html>

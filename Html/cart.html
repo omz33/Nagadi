@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart — T.Nagadi</title>
+  <link rel="stylesheet" href="../Css/index.css" />
+  <link rel="stylesheet" href="../Css/header.css" />
+</head>
+<body>
+<div class="app">
+  <div id="site-header"></div>
+
+  <main style="padding:20px; display:grid; gap:14px">
+    <div id="cartEmpty" class="section" style="display:none">
+      Your cart is empty. <a class="linklike" href="./index.html">Browse products</a>
+    </div>
+
+    <div id="cartList" style="display:none">
+      <div id="projectGroups" class="cart-groups"></div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="../Js/app.js"></script>
+<script type="module" src="../Js/cart.js"></script>
+<script type="module" src="../Js/header.js"></script>
+</body>
+</html>

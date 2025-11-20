@@ -1,0 +1,161 @@
+:root{
+  /* لازم تكون نفس القيم اللي في index.css عشان ما يصير تعارض */
+  --bg:#f5f6f7;
+  --panel:#f5f6f7;
+  --card:#ffffff;
+  --text:#1a1a1a;
+  --muted:#6b6f76;
+  --accent:#c9a646;        /* ذهبي */
+  --danger:#c6534e;
+  --ok:#4a5b38;            /* زيتي */
+  --line:#1b2a3c;          /* كحلي داكن */
+  --chip:#f0f1f3;
+  --glass:rgba(27,42,60,.85); /* كحلي شفاف */
+  --border:#d5d8de;
+}
+
+/* الهيدر العام لكل الصفحات */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:14px 18px;
+  backdrop-filter:blur(6px);
+  background:var(--glass); /* كحلي غامق شفاف */
+  border-bottom:1px solid rgba(255,255,255,.12);
+  color:#fff;
+}
+
+/* براند */
+.brand{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.logo{
+  display:block;
+  width:38px;
+  height:68px;
+  border-radius:6px;
+  background:linear-gradient(135deg,#c9a646 0%, #1b2a3c 100%); /* ذهبـي -> كحلي */
+}
+.brand h1{
+  margin:0;
+  font-size:16px;
+  color:#fff;
+  font-weight:600;
+}
+.crumbs{
+  color:var(--accent); /* ذهبي خفيف */
+  font-size:12px;
+  line-height:1.4;
+}
+
+/* الناف */
+.main-nav{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.main-nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.25);
+  background:transparent;
+  font-size:13px;
+  line-height:1.3;
+  font-weight:500;
+}
+.main-nav a.active,
+.main-nav a:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+  background:rgba(201,166,70,.08); /* ذهبي شفاف بسيط */
+}
+
+/* أكشنات يمين الهيدر (Cart / Login) */
+.header-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.back{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.25);
+  background:transparent;
+  color:#fff;
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  text-decoration:none;
+  white-space:nowrap;
+  font-size:13px;
+  line-height:1.3;
+}
+.back:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+  background:rgba(201,166,70,.08);
+}
+
+/* موبايل */
+.nav-toggle{
+  display:none;
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  padding:8px 10px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  line-height:1.3;
+}
+.nav-toggle:hover{
+  color:var(--accent);
+  border-color:var(--accent);
+  background:rgba(201,166,70,.08);
+}
+
+@media (max-width:860px){
+  .main-nav{
+    display:none;
+    position:absolute;
+    left:12px;
+    right:12px;
+    top:56px;
+    background:var(--glass);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    padding:8px;
+  }
+  .main-nav.open{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .nav-toggle{ display:block }
+}
+.logo{
+  display:block;
+  width:36px;
+  height:36px;
+  border-radius:6px;
+  overflow:hidden;
+  flex-shrink:0;
+  border:1px solid rgba(0,0,0,.08);
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,.18);
+}
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;    /* يخلي الشعار كامل جوه البوكس بدون ما ينقص */
+  display:block;
+}
