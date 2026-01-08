@@ -6,7 +6,7 @@ const USER_KEY   = 'tn_user';      // current session user
 const QUOTES_KEY = 'tn_quotes';    // array of quotation requests
 
 // ---- Super Admin (immutable) ----
-const SUPER_ADMIN_EMAIL = 'omar.zakarneh44@gmail.com';
+const SUPER_ADMIN_EMAIL = 'admin@gmail.com';
 
 export const PERMISSIONS = {
   manageUsers: 'manageUsers',
