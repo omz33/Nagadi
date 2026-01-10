@@ -23,9 +23,10 @@ if (!document.querySelector('link[rel="icon"]')) {
   const link = document.createElement('link');
   link.rel = 'icon';
   link.type = 'image/png';
-  link.href = '../assets/logo.png'; // مسار الأيقونة
+  link.href = '/Nagadi/assets/logo.png'; // مسار مطلق داخل موقع GitHub Pages
   document.head.appendChild(link);
 }
+
 
     updateHeader();
   } catch (e) {
